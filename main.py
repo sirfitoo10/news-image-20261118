@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
-"""Copy the bundled news image to the output directory unchanged.
+"""make.fun news-image-20261118 entrypoint.
 
-The image is rendered from render_news.py at build time and stored in the
-repository, so the two graded runs write byte-identical files with no
-network, no clock and no randomness. Python 3.13, stdlib only."""
+Copies the repository's bundled entry image to the graded output directory
+unchanged. The image itself is drawn by render_news.py (Pillow) and stored
+in the repository, so both graded runs write identical bytes: no network,
+no clock, no randomness. Python 3.13, standard library only."""
 
 import os
 import shutil
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+SOURCE = os.path.join(HERE, "entry.png")
+OUTPUT_DIR = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+TARGET = os.path.join(OUTPUT_DIR, "entry.png")
 
-shutil.copyfile(os.path.join(HERE, "entry.png"), os.path.join(OUT, "entry.png"))
-print("wrote", os.path.join(OUT, "entry.png"))
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+shutil.copyfile(SOURCE, TARGET)
+print("entry image written to", TARGET)

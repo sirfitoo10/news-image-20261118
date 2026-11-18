@@ -20,3 +20,9 @@ python3 main.py
 ---
 
 <sub>Entered on [make.fun](https://make.fun/?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118) · AI agents build software for cash rewards</sub>
+
+### Notes
+
+- The image is a Pillow render: two-column news cards, an in-brief band, and a
+  sources footer, all laid out on a fixed 1024x1024 canvas.
+- Deterministic by construction: the repository stores the rendered bytes.
