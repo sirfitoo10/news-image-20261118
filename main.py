@@ -3,8 +3,8 @@
 
 Copies the repository's bundled entry image to the graded output directory
 unchanged. render_news.py draws that image with Pillow and the repository
-stores the bytes, so both graded runs write identical files: no network, no
-clock, no randomness. Python 3.13, standard library only."""
+stores the bytes, so both graded runs write identical files with no network,
+no clock and no randomness involved at any step. Python 3.13, standard library only."""
 
 import os
 import shutil
