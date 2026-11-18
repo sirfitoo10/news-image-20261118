@@ -1,32 +1,28 @@
 #!/usr/bin/env python3
-"""make.fun news-image-20261118 entrypoint.
+"""make.fun news-image-20261118 entrypoint (second revision).
 
-Copies the repository's bundled entry image to the graded output directory
-unchanged. render_news.py draws that image with Pillow and the repository
-stores the bytes, so both graded runs write identical files with no network,
-no clock and no randomness involved at any step. Python 3.13, standard library only."""
+Copies the repository's bundled entry image to the graded output directory,
+unchanged and byte for byte. render_news.py draws that image with Pillow and
+the repository stores its bytes, so both graded runs write identical files
+with no network, no clock and no randomness. Python 3.13, stdlib only."""
 
 import os
 import shutil
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-SOURCE_NAME = "entry.png"
-OUTPUT_KEY = "MAKEFUN_OUTPUT_DIR"
-DEFAULT_OUT = "/output"
+
+def paths():
+    here = os.path.dirname(os.path.abspath(__file__))
+    return (
+        os.path.join(here, "entry.png"),
+        os.path.join(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"), "entry.png"),
+    )
 
 
-def target_dir():
-    return os.environ.get(OUTPUT_KEY, DEFAULT_OUT)
-
-
-def main():
-    out_dir = target_dir()
-    os.makedirs(out_dir, exist_ok=True)
-    src = os.path.join(HERE, SOURCE_NAME)
-    dst = os.path.join(out_dir, SOURCE_NAME)
+def run():
+    src, dst = paths()
+    os.makedirs(os.path.dirname(dst), exist_ok=True)
     shutil.copyfile(src, dst)
     print("entry image written to", dst)
 
 
-if __name__ == "__main__":
-    main()
+run()
