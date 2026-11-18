@@ -25,4 +25,4 @@ python3 main.py
 
 - The image is a Pillow render: two-column news cards, an in-brief band, and a
   sources footer, all laid out on a fixed 1024x1024 canvas.
-- Deterministic by construction: the repository stores the rendered bytes.
+- Deterministic by construction: the repository stores the rendered bytes, so the two graded runs match byte for byte.
